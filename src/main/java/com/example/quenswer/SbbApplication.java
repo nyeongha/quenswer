@@ -1,4 +1,4 @@
-package com.example.sbb;
+package com.example.quenswer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.example.sbb.question;
+package com.example.quenswer.question;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

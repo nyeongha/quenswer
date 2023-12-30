@@ -1,9 +1,9 @@
-package com.example.sbb;
+package com.example.quenswer;
 
-import com.example.sbb.answer.Answer;
-import com.example.sbb.answer.AnswerRepository;
-import com.example.sbb.question.Question;
-import com.example.sbb.question.QuestionRepository;
+import com.example.quenswer.answer.Answer;
+import com.example.quenswer.answer.AnswerRepository;
+import com.example.quenswer.question.Question;
+import com.example.quenswer.question.QuestionRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

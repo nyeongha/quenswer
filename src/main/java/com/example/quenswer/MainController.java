@@ -1,20 +1,16 @@
-package com.example.sbb;
+package com.example.quenswer;
 
-import com.example.sbb.question.DataNotFoundException;
-import com.example.sbb.question.Question;
-import com.example.sbb.question.QuestionRepository;
-import com.example.sbb.question.QuestionService;
-import jakarta.websocket.server.PathParam;
+import com.example.quenswer.question.Question;
+import com.example.quenswer.question.QuestionRepository;
+import com.example.quenswer.question.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor    //final이 붙은 속성을 포함하는 생성자를 자동으로 생성
