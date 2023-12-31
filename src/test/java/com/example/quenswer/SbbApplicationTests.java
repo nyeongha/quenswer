@@ -2,8 +2,10 @@ package com.example.quenswer;
 
 import com.example.quenswer.answer.Answer;
 import com.example.quenswer.answer.AnswerRepository;
+import com.example.quenswer.answer.AnswerService;
 import com.example.quenswer.question.Question;
 import com.example.quenswer.question.QuestionRepository;
+import com.example.quenswer.question.QuestionService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,9 +22,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SbbApplicationTests {
     @Autowired
     private QuestionRepository questionRepository;
-
+    @Autowired
+    private QuestionService questionService;
     @Autowired
     private AnswerRepository answerRepository;
+    @Autowired
+    private AnswerService answerService;
+    @Test
+    void questionCreateTest(){
+        Random random = new Random(System.nanoTime());
+        for (int i=0; i<200; i++){
+            String subject=String.format((int)(random.nextInt(10000))+"번 문제 해결 팁 좀 알려주세요");
+            String content=String.format((int)(random.nextInt(10000))+"코드 로직에 무슨 문제가 있는지 확인해주세요,,,문제를 잘모르겠어요.나온예시는 일단 다 맞는데..틀렸다고 나와서 고민이 커졌어요ㅠㅠ");
+            this.questionService.createQuestion(subject,content);
+
+        }
+    }
+    @Test
+    void deleteAll(){
+        questionRepository.deleteAll();
+
+    }
+    @Test
+    void inspect(){
+        List<Question> questions = questionRepository.findAll();
+        assertEquals(0,questions.size());
+    }
+
+
 
     @Test
     void create() {
