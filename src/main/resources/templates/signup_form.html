@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content" class="container my-3">
+
+  <div class="my-3 border-bottom">
+    <div>
+      <h4>회원가입</h4>
+    </div>
+  </div>
+
+  <form th:action="@{/member/signup}" th:object="${memberCreateForm}" method="post">
+    <div class="mb-3">
+      <label for="userId" class="form-label">사용자ID</label>
+      <p class="alert alert-danger" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></p>
+      <input type="text" th:field="*{userId}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">비밀번호</label>
+      <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+      <input type="password" id="password" th:field="*{password}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="password1" class="form-label">비밀번호 확인</label>
+      <p class="alert alert-danger" th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}"></p>
+      <input type="password" id="password1" th:field="*{password1}" class="form-control">
+      <p class="alert alert-danger" id="passwordMismatch" style="display: none;">Passwords do not match</p>
+      <p class="alert alert-success" id="passwordMatch" style="display: none;">Passwords match</p>
+    </div>
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      document.getElementById("password1").addEventListener("keyup", function() {
+        var password = document.getElementById("password").value;
+        var password1 = document.getElementById("password1").value;
+        var passwordMismatch = document.getElementById("passwordMismatch");
+        var passwordMatch = document.getElementById("passwordMatch");
+
+        if (password !== password1) {
+          passwordMismatch.style.display = "block";
+          passwordMatch.style.display = "none";
+        } else {
+          passwordMismatch.style.display = "none";
+          passwordMatch.style.display = "block";
+        }
+      });
+      /*]]>*/
+    </script>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">이메일</label>
+      <p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+      <input type="email" th:field="*{email}" class="form-control">
+    </div>
+
+    <button id="btn-save" type="submit" class="btn btn-primary">회원가입</button>
+  </form>
+
+</div>
+</html>

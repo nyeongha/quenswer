@@ -1,0 +1,7 @@
+.content-box {
+    width: 50%;
+    margin: 20px auto 20px auto;
+}
+textarea.form-control {
+    height: 500px;
+}

@@ -1,37 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-    <style>
-        .posting{
-            height: 500px;
-            margin:50px auto 50px auto;
-            padding: 100px 100px;
-        }
-        .card{
-            padding: inherit;
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 
-        }
-        textarea {
-            width:100%;
-            height: 50px;
-        }
-
-        input[type=submit] {
-            margin-top:10px;
-        }
-
-    </style>
-</head>
-<body>
-<header th:replace="~{header::headerFragment}"></header>
-
+<div layout:fragment="content" class="container my-3">
+    <link rel="stylesheet" type="text/css" th:href="@{/questionDetails.css}">
 <div class="posting">
     <div class="card" style="width: 100%;">
         <div class="card-body" id="${question.id}" >
@@ -42,9 +13,8 @@
                     <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
             </div>
-
         </div>
-
+    </div>
 </div>
 
 <button type="button" class="btn btn-dark" id="home" th:onclick="|location.href='@{/question/}'|">뒤로가기</button>
@@ -69,5 +39,5 @@
         </ul>
     </div>
 
-</body>
+</div>
 </html>

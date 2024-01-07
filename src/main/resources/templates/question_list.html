@@ -1,37 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        .card-body{
-            height:200px;
-            display:-webkit-box;
-            -webkit-box-orient:vertical;
-            -webkit-line-clamp:3;
-            overflow:hidden;
-
-        }
-        .card-title{
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            overflow: hidden;
-        }
-        .pagination{
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-<header th:replace="~{header::headerFragment}"></header>
-
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content" class="container my-3">
+    <link rel="stylesheet" type="text/css" th:href="@{/questionList.css}">
 <div class="p-5 mb-4 bg-body-tertiary rounded-3">
     <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">quenswer</h1>
@@ -47,6 +17,13 @@
             <div class="card-body" th:onclick="|location.href='@{/question/details/{id}(id=${question.id})}'|">
                 <h5 class="card-title" th:text="${question.subject}"></h5>
                 <p class="card-text" th:text="${question.content}"></p>
+
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start" >
+                        <div th:if="${#lists.size(question.answerList) > 0}"
+                             th:text="${#lists.size(question.answerList)}"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -76,7 +53,5 @@
     </ul>
 </div>
 <!-- 페이징처리 끝 -->
-
-
-</body>
+</div>
 </html>
