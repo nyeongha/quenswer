@@ -2,22 +2,19 @@
 <html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <div layout:fragment="content" class="container my-3">
   <link rel="stylesheet" type="text/css" th:href="@{/questionCreate.css}">
+
 <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
 <div class="content-box" id="ctbox">
   <div class="mb-3">
     <label for="subject" class="form-label">subject</label>
-    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('subject')}">
-      <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
-    </div>
-    <input id="subject" class="form-control" placeholder="subject" aria-label="subject" th:field="*{subject}">
+    <p class="alert alert-danger" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>
+    <input th:field="*{subject}" id="subject" class="form-control" placeholder="subject" aria-label="subject">
   </div>
 
   <div class="mb-3">
     <label for="content" class="form-label">content</label>
-    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('content')}">
-      <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
-    </div>
-    <textarea id="content" class="form-control" rows="3" name="content" th:field="*{content}"></textarea>
+    <p class="alert alert-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+    <textarea th:field="*{content}" id="content" class="form-control" rows="3" name="content"></textarea>
   </div>
 
   <button type="submit" class="btn btn-dark" id="posting">upload</button>

@@ -23,7 +23,7 @@ public class MemberService {
         this.memberRepository.save(member);
         return member;
     }
-    public Member findUserId(String userId){
+    public Member getMember(String userId){
         Optional<Member> om=memberRepository.findByUserId(userId);
         if(om.isPresent()){
             return om.get();
@@ -48,6 +48,8 @@ public class MemberService {
             return false;
         }
     }
+
+
 
 
 }

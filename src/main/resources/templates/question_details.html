@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <div layout:fragment="content" class="container my-3">
     <link rel="stylesheet" type="text/css" th:href="@{/questionDetails.css}">
@@ -10,6 +10,9 @@
             <p class="card-text" th:text="${question.content}"></p>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
+                    <div class="mb-2">
+                        <span th:if="${question.author != null}" th:text="${question.author.userId}"></span>
+                    </div>
                     <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
             </div>
@@ -21,10 +24,12 @@
 
     <hr>
     <h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
-    <form th:action="@{|/answer/create/${question.id}|}" method="post">
+    <form th:action="@{|/answer/create/${question.id}|}" method="post" th:object="${answerForm}">
         <div class="mb-3">
             <label class="form-label">답변등록</label>
-            <textarea name="content" id="content" rows="15"></textarea>
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+            <textarea sec:authorize="isAnonymous()" name="content" disabled th:field="*{content}" class="form-control" rows="10"></textarea>
+            <textarea sec:authorize="isAuthenticated()" name="content" th:field="*{content}" class="form-control" rows="10"></textarea>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
                     <input type="submit" class="btn btn-dark">
@@ -32,11 +37,19 @@
             </div>
         </div>
     </form>
-
-    <div>
-        <ul>
-            <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
-        </ul>
+<!--답변리스트-->
+    <div class="card my-3" th:each="answer : ${question.answerList}">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div class="mb-2">
+                        <span th:if="${answer.author != null}" th:text="${answer.author.userId}"></span>
+                    </div>
+                    <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

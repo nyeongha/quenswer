@@ -1,5 +1,6 @@
 package com.example.quenswer.answer;
 
+import com.example.quenswer.member.Member;
 import com.example.quenswer.question.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,6 +22,9 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private Member author;
 
 
 }

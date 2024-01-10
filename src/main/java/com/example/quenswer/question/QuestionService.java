@@ -1,5 +1,6 @@
 package com.example.quenswer.question;
 
+import com.example.quenswer.member.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
@@ -18,8 +19,6 @@ import java.util.Optional;
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
-
-
     @SneakyThrows
     public Question getQuestion(Integer id) {
         Optional<Question> oq=questionRepository.findById(id);
@@ -34,10 +33,11 @@ public class QuestionService {
         questionRepository.delete(question);
     }
 
-    public void createQuestion(String subject,String content){
+    public void createQuestion(String subject, String content, Member member){
         Question qs=new Question();
         qs.setSubject(subject);
         qs.setContent(content);
+        qs.setAuthor(member);
         qs.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(qs);
     }

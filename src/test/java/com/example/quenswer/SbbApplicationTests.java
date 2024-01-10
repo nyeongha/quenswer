@@ -30,11 +30,12 @@ class SbbApplicationTests {
     private AnswerService answerService;
     @Test
     void questionCreateTest(){
+
         Random random = new Random(System.nanoTime());
         for (int i=0; i<200; i++){
             String subject=String.format((int)(random.nextInt(10000))+"번 문제 해결 팁 좀 알려주세요");
             String content=String.format((int)(random.nextInt(10000))+"코드 로직에 무슨 문제가 있는지 확인해주세요,,,문제를 잘모르겠어요.나온예시는 일단 다 맞는데..틀렸다고 나와서 고민이 커졌어요ㅠㅠ");
-            this.questionService.createQuestion(subject,content);
+            this.questionService.createQuestion(subject,content,null);
 
         }
     }

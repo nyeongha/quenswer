@@ -1,6 +1,7 @@
 package com.example.quenswer.question;
 
 import com.example.quenswer.answer.Answer;
+import com.example.quenswer.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,4 +27,7 @@ public class Question {
 
     @OneToMany(mappedBy = "question",cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
+    @ManyToOne
+    private Member author;
 }
