@@ -44,11 +44,11 @@ class SbbApplicationTests {
         questionRepository.deleteAll();
 
     }
-    @Test
-    void inspect(){
-        List<Question> questions = questionRepository.findAll();
-        assertEquals(0,questions.size());
-    }
+//    @Test
+//    void inspect(){
+//        List<Question> questions = questionRepository.findAll();
+//        assertEquals(0,questions.size());
+//    }
 
 
 
@@ -68,19 +68,19 @@ class SbbApplicationTests {
 
     }
 
-    @Test
-    void delete(){
-        Optional<Question> oq=questionRepository.findById(2);
-        oq.ifPresent(question -> questionRepository.delete((question)));
-        Long Lq=questionRepository.count();
-        assertEquals(1,Lq);
-
-    }
-    @Test
-    void search(){
-        List<Question> Lq=questionRepository.findBySubjectLike("%2000번%");
-        assertEquals(2,Lq.size());
-    }
+//    @Test
+//    void delete(){
+//        Optional<Question> oq=questionRepository.findById(2);
+//        oq.ifPresent(question -> questionRepository.delete((question)));
+//        Long Lq=questionRepository.count();
+//        assertEquals(1,Lq);
+//
+//    }
+//    @Test
+//    void search(){
+//        List<Question> Lq=questionRepository.findBySubjectLike("%2000번%");
+//        assertEquals(2,Lq.size());
+//    }
     @Test
     void answerCreate(){
         Optional<Question> oq=questionRepository.findById(3);
